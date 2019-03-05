@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"src/github.com/gorilla/mux"
 	"ticTackToe_v2/src/api/v1/routes"
+	"ticTackToe_v2/src/socketTest"
 	"time"
 )
 
@@ -17,7 +18,7 @@ func main() {
 
 	r := mux.NewRouter()
 	//get index file or other
-	r.Handle(dir, http.FileServer(http.Dir(dir)))
+	r.Handle("/", http.FileServer(http.Dir(dir)))
 
 	// This will serve files under http://localhost:8000/static/<filename>
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(dir+"/static"))))
@@ -32,6 +33,21 @@ func main() {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
+
+	bus := socketTest.NewBus()
+	go bus.Run()
+	go socketTest.RunJoker(bus)
+
+	r.HandleFunc("/socket", func(w http.ResponseWriter, r *http.Request) {
+		// апгрейд соединения
+		ws, err := socketTest.Upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		bus.Register <- ws
+
+	})
 
 	log.Fatal(srv.ListenAndServe())
 }
