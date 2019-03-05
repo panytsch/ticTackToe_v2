@@ -1,0 +1,12 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/bradfitz/gomemcache/memcache",
+			"repository": "https://github.com/bradfitz/gomemcache",
+			"revision": "bc664df9673713a0ccf26e3b55a673ec7301088b",
+			"branch": "master",
+			"path": "/memcache"
+		}
+	]
+}
