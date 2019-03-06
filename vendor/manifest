@@ -1,0 +1,24 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/bradfitz/gomemcache/memcache",
+			"repository": "https://github.com/bradfitz/gomemcache",
+			"revision": "bc664df9673713a0ccf26e3b55a673ec7301088b",
+			"branch": "master",
+			"path": "/memcache"
+		},
+		{
+			"importpath": "github.com/gorilla/mux",
+			"repository": "https://github.com/gorilla/mux",
+			"revision": "15a353a636720571d19e37b34a14499c3afa9991",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/gorilla/websocket",
+			"repository": "https://github.com/gorilla/websocket",
+			"revision": "7c8e298727d149d7c329b4dec7e94e1932ac5c11",
+			"branch": "master"
+		}
+	]
+}
